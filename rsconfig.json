@@ -1,0 +1,31 @@
+{
+  "directory": "./src/components",
+  "hook": {
+    "files": [
+      {
+        "name": "index.js",
+        "imports": []
+      },
+      {
+        "name": "hooks.js",
+        "imports": []
+      }
+    ]
+  },
+  "component": {
+    "files": [
+      {
+        "name": "index.js",
+        "imports": ["react", "./grant", "./Components/Person/Grant"]
+      }
+    ]
+  },
+  "pattern": {
+    "files": [
+      {
+        "name": "index.js",
+        "imports": []
+      }
+    ]
+  }
+}
