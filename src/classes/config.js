@@ -21,15 +21,15 @@ class Config {
   }
 
   build(node) {
-    const configNode = this.data[node];
+    const configNode = this.data[node.name];
 
     if (!hasProperties(configNode)) return null;
 
     for (let file of configNode.files) {
-      const filePath = `${this.directory}/${node}/${file.name}`;
+      const filePath = `${this.directory}/${node.value}/${file.name}`;
 
       if (!fs.existsSync(filePath)) {
-        createDirectoryRecur(`${this.directory}/${upperCaseFirst(node)}`);
+        createDirectoryRecur(`${this.directory}/${upperCaseFirst(node.value)}`);
       }
 
       for (let import_ of file.imports) {
@@ -52,9 +52,9 @@ class Config {
         writeImport(filePath, mod);
       }
 
-      writeContent(filePath, upperCaseFirst(node));
+      writeContent(filePath, upperCaseFirst(node.value));
 
-      writeExport(filePath, upperCaseFirst(node));
+      writeExport(filePath, upperCaseFirst(node.value));
     }
   }
 
