@@ -16,15 +16,21 @@
     "files": [
       {
         "name": "index.js",
-        "imports": ["react", "./grant", "./Components/Person/Grant"]
+        "imports": [
+          {
+            "name": "react",
+            "modules": ["useState", "useHook"]
+          },
+          "./grant",
+          "./Components/Person/Grant"
+        ]
       }
     ]
   },
   "pattern": {
     "files": [
       {
-        "name": "index.js",
-        "imports": []
+        "name": "index.js"
       }
     ]
   }

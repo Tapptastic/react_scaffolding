@@ -11,6 +11,7 @@ export const writeFile = (filePath, fileData) =>
 export const getCurrentPath = () => process.env.PWD;
 export const getCurrentDirPath = () => __dirname;
 export const hasProperties = (obj) => Object.keys(obj).length > 0;
+export const hasProperty = (obj, prop) => (obj[prop] ? true : false);
 export const createDirectoryRecur = (filePath) =>
   fs.mkdirSync(filePath, { recursive: true });
 

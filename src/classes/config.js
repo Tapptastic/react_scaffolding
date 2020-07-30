@@ -8,7 +8,11 @@ import {
   hasProperties,
   createDirectoryRecur,
   writeContent,
+  hasProperty,
 } from "./utility";
+
+import File from "./file";
+import Importer from "./importer";
 
 class Config {
   constructor() {
@@ -27,10 +31,20 @@ class Config {
 
     for (let file of configNode.files) {
       const filePath = `${this.directory}/${node.value}/${file.name}`;
+      const f = new File(file.name, filePath);
 
-      if (!fs.existsSync(filePath)) {
-        createDirectoryRecur(`${this.directory}/${upperCaseFirst(node.value)}`);
-      }
+      /* 
+        Maybe see about creating something like a file object
+        if we don't have any errors then we Write
+
+
+      */
+
+      // if (!fs.existsSync(filePath)) {
+      //   createDirectoryRecur(`${this.directory}/${upperCaseFirst(node.value)}`);
+      // }
+
+      if (!hasProperty(file, "imports")) return null;
 
       for (let import_ of file.imports) {
         const mod = {
@@ -38,24 +52,20 @@ class Config {
           path: "",
         };
 
-        if (this.isLocalModule(import_)) {
-          const splitName = import_.split("/");
-          mod.name = upperCaseFirst(splitName[splitName.length - 1]);
-          mod.path = import_;
-        } else {
-          mod.name = upperCaseFirst(import_);
-          mod.path = import_;
-        }
+        const i = new Importer(import_);
 
-        console.log("Checking filePath" + filePath);
-
-        writeImport(filePath, mod);
+        f.imports.push(i);
       }
 
-      writeContent(filePath, upperCaseFirst(node.value));
+      // writeContent(filePath, upperCaseFirst(node.value));
 
-      writeExport(filePath, upperCaseFirst(node.value));
+      // writeExport(filePath, upperCaseFirst(node.value));
+      console.log(f);
     }
+  }
+
+  isSimpleImport(import_) {
+    return typeof import_ === "string";
   }
 
   isLocalModule(mod) {
