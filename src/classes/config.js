@@ -33,17 +33,6 @@ class Config {
       const filePath = `${this.directory}/${node.value}/${file.name}`;
       const f = new File(file.name, filePath);
 
-      /* 
-        Maybe see about creating something like a file object
-        if we don't have any errors then we Write
-
-
-      */
-
-      // if (!fs.existsSync(filePath)) {
-      //   createDirectoryRecur(`${this.directory}/${upperCaseFirst(node.value)}`);
-      // }
-
       if (!hasProperty(file, "imports")) return null;
 
       for (let import_ of file.imports) {
@@ -57,9 +46,6 @@ class Config {
         f.imports.push(i);
       }
 
-      // writeContent(filePath, upperCaseFirst(node.value));
-
-      // writeExport(filePath, upperCaseFirst(node.value));
       console.log(f);
     }
   }
