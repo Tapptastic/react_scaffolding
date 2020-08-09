@@ -16,3 +16,5 @@
 
         import React, {useState} from 'react';
     ```
+
+- Also want to create backwards compatibility, so if you have folders already created and you change the structure it will then update the already created files using something like react-scaffolding -update

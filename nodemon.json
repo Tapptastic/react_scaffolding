@@ -1,6 +1,0 @@
-{
-  "watch": ["src"],
-  "events": {
-    "restart": "npm run build"
-  }
-}

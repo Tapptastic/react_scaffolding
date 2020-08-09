@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx babel ./src -d dist",
     "watch": "nodemon ./dist/index.js",
-    "start": "npm run build && npm link && react-scaffolding -component 'Grant_Component' -hook 'Grant_Hook' -test 'TESt' ",
+    "start": "npm run build && npm link && react-scaffolding -component 'Grant_Component' -hook 'Grant_Hook'",
     "link": "npm run build && npm link"
   },
   "devDependencies": {
